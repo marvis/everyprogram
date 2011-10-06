@@ -1,0 +1,9 @@
+This project will finish all kinds of programs, different kinds program will have different run_parser
+
+We will use the parser from v3d_convert. However, we will make the parser much more powerfull by add functions :
+
+1. add_cmd_opts
+1. add_usage_func
+2. add_run_parser
+
+For add_cmd_opts, we will forbid global options. every global options will be ommit when add_cmd_opts. If error, the program should take care of it yourself.
