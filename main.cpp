@@ -1,11 +1,13 @@
 #include "perfect_parser.h"
 #include "parser.h"
+#include "subtitle.h"
 
 void printHelp();
 bool printUsage(string cmd_name, ostream & out);
 
 CommandOption command_options[] = {
-	{"-help",0},{"-search",0}
+	{"+help",0},{"+search",0},
+	{"+subtitle",1},{"-start",1}
 };
 
 bool run_parser_main(PerfectParser &paras);
@@ -40,6 +42,16 @@ bool run_parser_main(PerfectParser &paras)
 		else if(cmd_name == "-search")
 		{
 			cout<<"it is search"<<endl;
+		}
+		else if(cmd_name == "-subtitle")
+		{
+			string sub_file = paras.get_para("-subtitle");
+			long start = paras.is_exist("-start") ? paras.get_double_para("-start"): 0;
+			cout<<"sub_file = "<<sub_file<<endl;
+			cout<<"start = "<<start<<endl;
+			vector<Subtitle> allsubtitles = readSubtitle_file(sub_file);
+			cout<<allsubtitles.size()<<" subtitles is read"<<endl;
+			run_subtitle(allsubtitles, start);
 		}
 	}
 		
